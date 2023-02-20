@@ -13,7 +13,9 @@ import {
   Checkbox,
   Anchor,
   Stack,
+  Notification,
 } from '@mantine/core';
+
 
 
 export function AuthenticationForm(props: PaperProps) {
@@ -28,9 +30,24 @@ export function AuthenticationForm(props: PaperProps) {
 
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
-      password: (val) => (val.length <= 6 ? 'Password should include at least 6 characters' : null),
+      password: (val) => (val.length <= 5 ? 'Password should include at least 6 characters' : null),
     },
   });
+
+
+
+// interface FormValues {
+//   name: string | null; // regular field, same as inferred type
+//   email: string; 
+//   password: string; 
+//   terms: string | null; 
+
+// }
+
+  const handleSubmit = (values: any) => {
+    console.log(values)
+    
+  };
 
   return (
 
@@ -47,7 +64,7 @@ export function AuthenticationForm(props: PaperProps) {
 
       <Divider label="Or continue with email" labelPosition="center" my="lg" />
 
-      <form onSubmit={form.onSubmit(() => {})}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
           {type === 'register' && (
             <TextInput
